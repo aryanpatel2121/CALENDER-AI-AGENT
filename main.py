@@ -45,9 +45,6 @@ GOOGLE_CALENDAR_ID = os.getenv("GOOGLE_CALENDAR_ID")
 os.environ["LANGSMITH_PROJECT"] = "google_calender"
 os.environ["LANGSMITH_TRACING"] = "true"
 
-# Validate required environment variables
-if not GROQ_API_KEY or not LANGCHAIN_API_KEY:
-    raise EnvironmentError("Missing GROQ_API_KEY or LANGCHAIN_API_KEY")
 # Google Calendar setup
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
