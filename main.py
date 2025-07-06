@@ -33,12 +33,21 @@ app.add_middleware(
 )
 
 # Load environment variables
-load_dotenv()
+load_dotenv()  # Only used locally, ignored in prod
+
+# Read required keys
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+GOOGLE_CALENDAR_ID = os.getenv("GOOGLE_CALENDAR_ID")
+
+# Optional environment variables for LangSmith tracking
 os.environ["LANGSMITH_PROJECT"] = "google_calender"
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-os.environ["LANGSMITH_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 os.environ["LANGSMITH_TRACING"] = "true"
 
+# Validate required environment variables
+if not GROQ_API_KEY or not LANGCHAIN_API_KEY:
+    raise EnvironmentError("Missing GROQ_API_KEY or LANGCHAIN_API_KEY")
 # Google Calendar setup
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
