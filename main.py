@@ -15,6 +15,7 @@ from googleapiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 from langchain_core.tools import tool
 import os
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,9 +41,9 @@ LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "true")
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 def get_calendar_service():
-    credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/credentials/calendarbookingagent-465016-f19347722100.json")
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, SCOPES)
-    return build('calendar', 'v3', credentials=credentials)
+    service_account_info = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, SCOPES)
+    return build("calendar", "v3", credentials=credentials)
 
 calendar_service = get_calendar_service()
 
