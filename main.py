@@ -215,7 +215,7 @@ llm_with_tools = llm.bind_tools(tools)
 # Helper functions
 def provide_today_info(state: State):
     """Inject today's date (and weekday) into the state."""
-    state["today_info"] = today({})
+    statestate["today_info"] = today.invoke({})
     return state
 
 def inject_additional_system_message(state: State):
