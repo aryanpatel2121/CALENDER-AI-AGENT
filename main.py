@@ -31,6 +31,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/")
+def root():
+    return {"message": "Calendar AI Agent is live. Use /chat to interact."}
 
 # Load environment variables
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
