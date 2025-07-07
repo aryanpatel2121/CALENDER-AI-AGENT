@@ -34,6 +34,7 @@ app.add_middleware(
 
 # Load environment variables
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+CALENDAR_ID = os.getenv("CALENDAR_ID")
 LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
 LANGSMITH_PROJECT = os.getenv("LANGSMITH_PROJECT", "google_calender")
 LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "true")
